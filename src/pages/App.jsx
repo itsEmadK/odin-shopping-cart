@@ -1,7 +1,11 @@
-import Greeting from '../components/Greeting';
+import { Outlet } from 'react-router-dom';
 
 function App() {
-  return <Greeting name={'Stranger'} />;
+  return (
+    <>
+      <Outlet />
+    </>
+  );
 }
 
 export default App;
