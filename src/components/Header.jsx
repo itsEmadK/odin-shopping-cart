@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import theme from '../util/theme.json';
 import { Link, useLocation } from 'react-router-dom';
+import ShoppingCart from './ShoppingCart';
 
 const StyledHeader = styled.header`
   background-color: ${theme.schemes.light.primary};
@@ -36,7 +37,8 @@ const NavItem = styled(Link)`
     selected ? `2px solid ${theme.schemes.light.onPrimary}` : 'none'};
 `;
 
-export default function Header() {
+// TODO: Remove cart param def value
+export default function Header({ cart = [1, 2, 3] }) {
   const path = useLocation().pathname;
 
   return (
@@ -53,6 +55,9 @@ export default function Header() {
             <NavItem to={'products'} selected={path === '/products'}>
               Products
             </NavItem>
+          </li>
+          <li>
+            <ShoppingCart cart={cart} />
           </li>
         </NavList>
       </nav>
