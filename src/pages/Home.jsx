@@ -7,6 +7,7 @@ const Container = styled.div`
   place-content: center;
   gap: 1rem;
   justify-items: center;
+  align-self: center;
 `;
 
 const Title = styled.h2`

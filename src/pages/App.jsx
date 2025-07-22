@@ -4,6 +4,8 @@ import styled from 'styled-components';
 
 const OutletWrapper = styled.div`
   padding: 1rem;
+  display: grid;
+  flex: 1;
 `;
 
 function App() {
