@@ -29,10 +29,14 @@ const ItemCount = styled.span`
 `;
 
 export default function ShoppingCart({ cart }) {
+  let itemCount = 0;
+  for (const id in cart) {
+    itemCount += cart[id];
+  }
   return (
     <CartWrapper>
       <CartIcon />
-      <ItemCount>{cart.length}</ItemCount>
+      <ItemCount>{itemCount}</ItemCount>
     </CartWrapper>
   );
 }

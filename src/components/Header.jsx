@@ -38,7 +38,7 @@ const NavItem = styled(Link)`
 `;
 
 // TODO: Remove cart param def value
-export default function Header({ cart = [1, 2, 3] }) {
+export default function Header({ cart }) {
   const path = useLocation().pathname;
 
   return (
