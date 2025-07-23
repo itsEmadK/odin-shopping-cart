@@ -12,6 +12,7 @@ const CartIcon = styled(ShoppingBasketIcon)`
 
 const CartWrapper = styled.div`
   position: relative;
+  cursor: pointer;
 `;
 
 const ItemCount = styled.span`
