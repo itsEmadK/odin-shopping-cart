@@ -12,11 +12,15 @@ const Grid = styled.div`
   gap: 1rem;
 `;
 
-export default function Products({
-  onProductAddToCart,
-  onProductRemoveFromCart,
-}) {
-  const { loading, products, error, cart } = useOutletContext();
+export default function Products() {
+  const {
+    loading,
+    products,
+    error,
+    cart,
+    onProductAddToCart,
+    onProductRemoveFromCart,
+  } = useOutletContext();
 
   if (loading) {
     return 'Loading...';
