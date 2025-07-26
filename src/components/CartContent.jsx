@@ -51,6 +51,12 @@ export default function CartContent({
   onProductRemoveFromCart,
   onPurchase,
 }) {
+  let totalCost = 0;
+  for (const id in cart) {
+    if (Object.prototype.hasOwnProperty.call(cart, id)) {
+      totalCost += (cart[id] || 0) * products[id].price;
+    }
+  }
   return (
     <Wrapper>
       <Grid>
@@ -70,7 +76,7 @@ export default function CartContent({
       </Grid>
 
       <FlexBox>
-        <TotalPrice>Total: 123$</TotalPrice>
+        <TotalPrice>Total: {totalCost.toFixed(2)}$</TotalPrice>
         <PurchaseButton onClick={onPurchase}>Purchase</PurchaseButton>
       </FlexBox>
     </Wrapper>
