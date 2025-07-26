@@ -42,6 +42,11 @@ const PurchaseButton = styled.button`
   background-color: ${theme.schemes.light.primary};
   color: ${theme.schemes.light.onPrimary};
   cursor: pointer;
+  &:disabled {
+    background-color: rgb(159, 164, 172);
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 `;
 
 export default function CartContent({
@@ -77,7 +82,9 @@ export default function CartContent({
 
       <FlexBox>
         <TotalPrice>Total: {totalCost.toFixed(2)}$</TotalPrice>
-        <PurchaseButton onClick={onPurchase}>Purchase</PurchaseButton>
+        <PurchaseButton onClick={onPurchase} disabled={totalCost === 0}>
+          Purchase
+        </PurchaseButton>
       </FlexBox>
     </Wrapper>
   );

@@ -43,6 +43,10 @@ function App() {
     setCart(newCart);
   };
 
+  const onPurchase = () => {
+    setCart({});
+  };
+
   return (
     <>
       <Header
@@ -50,6 +54,7 @@ function App() {
         products={products}
         onProductAddToCart={onProductAddToCart}
         onProductRemoveFromCart={onProductRemoveFromCart}
+        onPurchase={onPurchase}
       />
       <OuterOutletWrapper>
         <OutletWrapper>

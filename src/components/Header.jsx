@@ -43,6 +43,7 @@ export default function Header({
   cart,
   onProductAddToCart,
   onProductRemoveFromCart,
+  onPurchase,
 }) {
   const path = useLocation().pathname;
 
@@ -67,6 +68,7 @@ export default function Header({
               products={products}
               onProductAddToCart={onProductAddToCart}
               onProductRemoveFromCart={onProductRemoveFromCart}
+              onPurchase={onPurchase}
             />
           </li>
         </NavList>
