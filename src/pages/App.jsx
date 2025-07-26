@@ -5,10 +5,16 @@ import useFetchData from '../hooks/useFetchData';
 import { useState } from 'react';
 const url = `https://fakestoreapi.com/products/`;
 
+const OuterOutletWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const OutletWrapper = styled.div`
   padding: 1rem;
   display: grid;
   flex: 1;
+  max-width: 1920px;
 `;
 
 function App() {
@@ -45,18 +51,20 @@ function App() {
         onProductAddToCart={onProductAddToCart}
         onProductRemoveFromCart={onProductRemoveFromCart}
       />
-      <OutletWrapper>
-        <Outlet
-          context={{
-            loading,
-            products,
-            error,
-            cart,
-            onProductAddToCart,
-            onProductRemoveFromCart,
-          }}
-        />
-      </OutletWrapper>
+      <OuterOutletWrapper>
+        <OutletWrapper>
+          <Outlet
+            context={{
+              loading,
+              products,
+              error,
+              cart,
+              onProductAddToCart,
+              onProductRemoveFromCart,
+            }}
+          />
+        </OutletWrapper>
+      </OuterOutletWrapper>
     </>
   );
 }

@@ -2,6 +2,8 @@ import { useOutletContext } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import styled from 'styled-components';
 
+const Wrapper = styled.div``;
+
 const Heading = styled.h2`
   margin-bottom: 1rem;
 `;
@@ -31,7 +33,7 @@ export default function Products() {
   }
 
   return (
-    <>
+    <Wrapper>
       <Heading>Products</Heading>
       <Grid>
         {products.map((p) => (
@@ -44,6 +46,6 @@ export default function Products() {
           />
         ))}
       </Grid>
-    </>
+    </Wrapper>
   );
 }
