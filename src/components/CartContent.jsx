@@ -6,6 +6,7 @@ const Wrapper = styled.div`
   position: absolute;
   top: 35px;
   right: 0;
+  min-width: 275px;
   /* border: 2px solid red; */
   color: black;
   background-color: ${theme.schemes.light.secondaryContainer};

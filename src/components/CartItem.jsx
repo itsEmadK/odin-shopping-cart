@@ -7,7 +7,6 @@ const Container = styled.div`
   border-radius: 4px;
   padding: 0.5rem;
   gap: 0.5rem;
-  width: 250px;
 `;
 const Image = styled.img`
   width: 40px;
