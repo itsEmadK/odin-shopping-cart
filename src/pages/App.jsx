@@ -33,7 +33,12 @@ function App() {
 
   return (
     <>
-      <Header cart={cart} />
+      <Header
+        cart={cart}
+        products={products}
+        onProductAddToCart={onProductAddToCart}
+        onProductRemoveFromCart={onProductRemoveFromCart}
+      />
       <OutletWrapper>
         <Outlet
           context={{

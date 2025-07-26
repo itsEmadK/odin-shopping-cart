@@ -1,10 +1,13 @@
 import { ShoppingBasketIcon } from 'lucide-react';
 import styled from 'styled-components';
 import theme from '../util/theme.json';
+import { useState } from 'react';
+import CartContent from './CartContent';
 
 const CartIcon = styled(ShoppingBasketIcon)`
   display: block;
   transition: transform 0.2s ease;
+  cursor: pointer;
   &:hover {
     transform: scale(1.075);
   }
@@ -12,7 +15,6 @@ const CartIcon = styled(ShoppingBasketIcon)`
 
 const CartWrapper = styled.div`
   position: relative;
-  cursor: pointer;
 `;
 
 const ItemCount = styled.span`
@@ -26,18 +28,36 @@ const ItemCount = styled.span`
   border-radius: 50%;
   display: grid;
   place-content: center;
-  cursor: default;
 `;
 
-export default function ShoppingCart({ cart }) {
+export default function ShoppingCart({
+  products,
+  cart,
+  onProductAddToCart,
+  onProductRemoveFromCart,
+  onPurchase,
+}) {
+  const [showContent, setShowContent] = useState(false);
+  const handleCartIconClick = () => setShowContent(!showContent);
+
   let itemCount = 0;
   for (const id in cart) {
     itemCount += cart[id];
   }
+
   return (
     <CartWrapper>
-      <CartIcon />
+      <CartIcon onClick={handleCartIconClick} />
       <ItemCount>{itemCount}</ItemCount>
+      {showContent && (
+        <CartContent
+          cart={cart}
+          products={products}
+          onProductAddToCart={onProductAddToCart}
+          onProductRemoveFromCart={onProductRemoveFromCart}
+          onPurchase={onPurchase}
+        />
+      )}
     </CartWrapper>
   );
 }
