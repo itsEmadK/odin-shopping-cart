@@ -42,7 +42,7 @@ export default function ShoppingCart({
 
   let itemCount = 0;
   for (const id in cart) {
-    itemCount += cart[id];
+    itemCount += cart[id] || 0;
   }
 
   return (

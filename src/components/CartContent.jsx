@@ -53,17 +53,19 @@ export default function CartContent({
   return (
     <Wrapper>
       <Grid>
-        {Object.keys(cart).map((id) => {
-          return (
-            <CartItem
-              key={id}
-              count={cart[id]}
-              product={products.find((p) => p.id == id)}
-              onAddToCart={() => onProductAddToCart(id)}
-              onRemoveFromCart={() => onProductRemoveFromCart(id)}
-            />
-          );
-        })}
+        {Object.keys(cart)
+          .filter((id) => cart[id])
+          .map((id) => {
+            return (
+              <CartItem
+                key={id}
+                count={cart[id]}
+                product={products.find((p) => p.id == id)}
+                onAddToCart={() => onProductAddToCart(id)}
+                onRemoveFromCart={() => onProductRemoveFromCart(id)}
+              />
+            );
+          })}
       </Grid>
 
       <FlexBox>

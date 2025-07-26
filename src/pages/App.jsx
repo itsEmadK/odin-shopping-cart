@@ -27,7 +27,13 @@ function App() {
 
   const onProductRemoveFromCart = (id) => {
     const newCart = { ...cart };
+    if (!newCart[id]) {
+      return;
+    }
     newCart[id]--;
+    if (newCart[id] === 0) {
+      newCart[id] = undefined;
+    }
     setCart(newCart);
   };
 
