@@ -1,7 +1,7 @@
 import { ShoppingBasketIcon } from 'lucide-react';
 import styled from 'styled-components';
 import theme from '../util/theme.json';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CartContent from './CartContent';
 
 const CartIcon = styled(ShoppingBasketIcon)`
@@ -45,8 +45,19 @@ export default function ShoppingCart({
     itemCount += cart[id] || 0;
   }
 
+  const handleBodyClicks = () => {
+    setShowContent(false);
+  };
+
+  useEffect(() => {
+    document.body.addEventListener('click', handleBodyClicks);
+
+    return () =>
+      document.body.removeEventListener('click', handleBodyClicks);
+  }, []);
+
   return (
-    <CartWrapper>
+    <CartWrapper onClick={(e) => e.stopPropagation()}>
       <CartIcon onClick={handleCartIconClick} />
       <ItemCount>{itemCount}</ItemCount>
       {showContent && (
