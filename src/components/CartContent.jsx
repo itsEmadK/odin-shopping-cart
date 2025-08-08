@@ -56,13 +56,11 @@ export default function CartContent() {
   const cartApi = useCartApi();
   const { products } = useProducts();
   let totalCost = 0;
-  if (products) {
-    for (const id in cart) {
-      if (Object.prototype.hasOwnProperty.call(cart, id)) {
-        totalCost += (cart[id] || 0) * products[id].price;
-      }
-    }
-  }
+
+  Object.keys(cart).forEach((id) => {
+    totalCost += (cart[id] || 0) * products.find((p) => p.id == id).price;
+  });
+
   const handleAddProduct = (id) => {
     cartApi.addToCart(id);
   };
