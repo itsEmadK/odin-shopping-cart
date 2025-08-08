@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import CartItem from './CartItem';
 import theme from '../util/theme.json';
+import { useCartApi, useCartData } from '../contexts/CartContext';
+import { useProducts } from '../contexts/ProductsContext';
 
 const Wrapper = styled.div`
   position: absolute;
@@ -49,40 +51,52 @@ const PurchaseButton = styled.button`
   }
 `;
 
-export default function CartContent({
-  products,
-  cart,
-  onProductAddToCart,
-  onProductRemoveFromCart,
-  onPurchase,
-}) {
+export default function CartContent() {
+  const cart = useCartData();
+  const cartApi = useCartApi();
+  const { products } = useProducts();
   let totalCost = 0;
-  for (const id in cart) {
-    if (Object.prototype.hasOwnProperty.call(cart, id)) {
-      totalCost += (cart[id] || 0) * products[id].price;
+  if (products) {
+    for (const id in cart) {
+      if (Object.prototype.hasOwnProperty.call(cart, id)) {
+        totalCost += (cart[id] || 0) * products[id].price;
+      }
     }
   }
+  const handleAddProduct = (id) => {
+    cartApi.addToCart(id);
+  };
+  const handleRemoveProduct = (id) => {
+    cartApi.removeFromCart(id);
+  };
+  const handlePurchase = () => {
+    cartApi.purchase();
+  };
   return (
     <Wrapper>
       <Grid>
-        {Object.keys(cart)
-          .filter((id) => cart[id])
-          .map((id) => {
-            return (
-              <CartItem
-                key={id}
-                count={cart[id]}
-                product={products.find((p) => p.id == id)}
-                onAddToCart={() => onProductAddToCart(id)}
-                onRemoveFromCart={() => onProductRemoveFromCart(id)}
-              />
-            );
-          })}
+        {products &&
+          Object.keys(cart)
+            .filter((id) => cart[id])
+            .map((id) => {
+              return (
+                <CartItem
+                  key={id}
+                  count={cart[id]}
+                  product={products.find((p) => p.id == id)}
+                  onAddToCart={() => handleAddProduct(id)}
+                  onRemoveFromCart={() => handleRemoveProduct(id)}
+                />
+              );
+            })}
       </Grid>
 
       <FlexBox>
         <TotalPrice>Total: {totalCost.toFixed(2)}$</TotalPrice>
-        <PurchaseButton onClick={onPurchase} disabled={totalCost === 0}>
+        <PurchaseButton
+          onClick={handlePurchase}
+          disabled={totalCost === 0}
+        >
           Purchase
         </PurchaseButton>
       </FlexBox>

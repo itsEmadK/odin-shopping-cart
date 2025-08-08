@@ -38,13 +38,7 @@ const NavItem = styled(Link)`
 `;
 
 // TODO: Remove cart param def value
-export default function Header({
-  products,
-  cart,
-  onProductAddToCart,
-  onProductRemoveFromCart,
-  onPurchase,
-}) {
+export default function Header() {
   const path = useLocation().pathname;
 
   return (
@@ -63,13 +57,7 @@ export default function Header({
             </NavItem>
           </li>
           <li>
-            <ShoppingCart
-              cart={cart}
-              products={products}
-              onProductAddToCart={onProductAddToCart}
-              onProductRemoveFromCart={onProductRemoveFromCart}
-              onPurchase={onPurchase}
-            />
+            <ShoppingCart />
           </li>
         </NavList>
       </nav>

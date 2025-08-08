@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import theme from '../util/theme.json';
 import { useEffect, useState } from 'react';
 import CartContent from './CartContent';
+import { useCartData } from '../contexts/CartContext';
 
 const CartIcon = styled(ShoppingBasketIcon)`
   display: block;
@@ -30,15 +31,10 @@ const ItemCount = styled.span`
   place-content: center;
 `;
 
-export default function ShoppingCart({
-  products,
-  cart,
-  onProductAddToCart,
-  onProductRemoveFromCart,
-  onPurchase,
-}) {
+export default function ShoppingCart() {
   const [showContent, setShowContent] = useState(false);
   const handleCartIconClick = () => setShowContent(!showContent);
+  const cart = useCartData();
 
   let itemCount = 0;
   for (const id in cart) {
@@ -60,15 +56,7 @@ export default function ShoppingCart({
     <CartWrapper onClick={(e) => e.stopPropagation()}>
       <CartIcon onClick={handleCartIconClick} />
       <ItemCount>{itemCount}</ItemCount>
-      {showContent && (
-        <CartContent
-          cart={cart}
-          products={products}
-          onProductAddToCart={onProductAddToCart}
-          onProductRemoveFromCart={onProductRemoveFromCart}
-          onPurchase={onPurchase}
-        />
-      )}
+      {showContent && <CartContent />}
     </CartWrapper>
   );
 }

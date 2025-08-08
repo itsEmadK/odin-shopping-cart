@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import productsJson from './products.json';
 
-const DELAY = 500;
+const DELAY = 1000;
 
 export default function useMockedProductsFetchData() {
   const [isLoading, setIsLoading] = useState(true);

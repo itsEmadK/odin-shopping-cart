@@ -1,6 +1,7 @@
-import { useOutletContext } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import styled from 'styled-components';
+import { useProducts } from '../contexts/ProductsContext';
+import { useCartApi, useCartData } from '../contexts/CartContext';
 
 const Wrapper = styled.div``;
 
@@ -15,22 +16,24 @@ const Grid = styled.div`
 `;
 
 export default function Products() {
-  const {
-    loading,
-    products,
-    error,
-    cart,
-    onProductAddToCart,
-    onProductRemoveFromCart,
-  } = useOutletContext();
+  const { isLoading, error, products } = useProducts();
+  const cart = useCartData();
+  const cartApi = useCartApi();
 
-  if (loading) {
+  if (isLoading) {
     return 'Loading...';
   }
 
   if (error) {
     return error.toString();
   }
+
+  const handleAddProduct = (id) => {
+    cartApi.addToCart(id);
+  };
+  const handleRemoveProduct = (id) => {
+    cartApi.removeFromCart(id);
+  };
 
   return (
     <Wrapper>
@@ -40,8 +43,8 @@ export default function Products() {
           <ProductCard
             key={p.id}
             product={p}
-            onAddToCart={() => onProductAddToCart(p.id)}
-            onRemoveFromCart={() => onProductRemoveFromCart(p.id)}
+            onAddToCart={() => handleAddProduct(p.id)}
+            onRemoveFromCart={() => handleRemoveProduct(p.id)}
             count={cart[p.id] ? cart[p.id] : 0}
           />
         ))}
