@@ -6,9 +6,9 @@ const ProductsContext = createContext();
 export const useProducts = () => useContext(ProductsContext);
 
 export default function ProductsContextProvider({ children }) {
-  const { isLoading, error, products } = useMockedProductsFetchData();
+  const { loading, error, products } = useMockedProductsFetchData();
   return (
-    <ProductsContext.Provider value={{ isLoading, error, products }}>
+    <ProductsContext.Provider value={{ loading, error, products }}>
       {children}
     </ProductsContext.Provider>
   );

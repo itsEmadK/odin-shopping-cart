@@ -4,7 +4,7 @@ import productsJson from './products.json';
 const DELAY = 1000;
 
 export default function useMockedProductsFetchData() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [error, _] = useState(null);
   const [products, setProducts] = useState(null);
 
@@ -13,9 +13,9 @@ export default function useMockedProductsFetchData() {
       setTimeout(resolve, DELAY);
     }).then(() => {
       setProducts(productsJson);
-      setIsLoading(false);
+      setLoading(false);
     });
   }, []);
 
-  return { isLoading, products, error };
+  return { loading, products, error };
 }

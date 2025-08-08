@@ -16,11 +16,11 @@ const Grid = styled.div`
 `;
 
 export default function Products() {
-  const { isLoading, error, products } = useProducts();
+  const { loading, error, products } = useProducts();
   const cart = useCartData();
   const cartApi = useCartApi();
 
-  if (isLoading) {
+  if (loading) {
     return 'Loading...';
   }
 
