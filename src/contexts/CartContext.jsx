@@ -47,7 +47,7 @@ function cartReducer(state, action) {
       const newCart = { ...state };
       if (newCart[action.productId]) {
         if (newCart[action.productId] === 1) {
-          newCart[action.productId] = undefined;
+          delete newCart[action.productId];
         } else {
           newCart[action.productId] = newCart[action.productId] - 1;
         }
