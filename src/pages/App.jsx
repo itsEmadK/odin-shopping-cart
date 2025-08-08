@@ -1,8 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../components/Header';
 import styled from 'styled-components';
-import useFetchData from '../hooks/useFetchData';
-import { useState } from 'react';
 import CartContextProvider from '../contexts/CartContext';
 import ProductsContextProvider from '../contexts/ProductsContext';
 // const url = `https://fakestoreapi.com/products/`;

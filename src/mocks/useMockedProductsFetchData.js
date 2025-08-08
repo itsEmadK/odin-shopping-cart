@@ -5,7 +5,7 @@ const DELAY = 1000;
 
 export default function useMockedProductsFetchData() {
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, _] = useState(null);
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
